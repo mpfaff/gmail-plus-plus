@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Gmail++",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "description": "Improves gmail, currently by modifying the refresh button to also check external POP3 accounts.",
 
