@@ -11,8 +11,6 @@
   },
 
   "permissions": [
-	  "cookies",
-	  "webRequest",
 	  "*://mail.google.com/"
   ],
 
