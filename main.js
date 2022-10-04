@@ -1,4 +1,4 @@
-const SENSITIVE_DEBUG = true;
+const SENSITIVE_DEBUG = false;
 
 const TAB_URL_PAT = /^https?:\/\/mail\.google\.com\/mail\/u\/(\d+)\/.+$/;
 
