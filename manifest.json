@@ -1,28 +1,28 @@
 {
-  "manifest_version": 2,
-  "name": "Gmail++",
-  "version": "1.0.1",
+	"manifest_version": 2,
+	"name": "Gmail++",
+	"version": "1.0.1",
 
-  "description": "Improves the user experience of Gmail",
+	"description": "Improves the user experience of Gmail",
 
-  "icons": {
-    "48": "icons/icon-48.png",
-    "64": "icons/icon-64.png"
-  },
+	"icons": {
+		"48": "icons/icon-48.png",
+		"64": "icons/icon-64.png"
+	},
 
-  "permissions": [
-	  "*://mail.google.com/"
-  ],
+	"permissions": [
+		"*://mail.google.com/"
+	],
 
-  "background": {
-    "scripts": ["background.js"]
-  },
+	"background": {
+		"scripts": ["background.js"]
+	},
 
-  "content_scripts": [
-	  {
-		"matches": ["*://mail.google.com/*"],
-		"js": ["main.js"]
-	  }
-  ]
+	"content_scripts": [
+		{
+			"matches": ["*://mail.google.com/*"],
+			"js": ["main.js"]
+		}
+	]
 }
 
