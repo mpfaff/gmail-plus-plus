@@ -11,18 +11,28 @@
 	},
 
 	"permissions": [
-		"*://mail.google.com/"
+		"*://mail.google.com/",
+		"storage"
 	],
-
-	"background": {
-		"scripts": ["background.js"]
-	},
 
 	"content_scripts": [
 		{
 			"matches": ["*://mail.google.com/*"],
-			"js": ["main.js"]
+			"js": ["lib.js", "main.js"],
+			"run_at": "document_end"
 		}
-	]
+	],
+
+	"options_ui": {
+		"page": "options.html",
+		"browser_style": true,
+		"chrome_style": true
+	},
+
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "gmail-plus-plus@pfaff.dev"
+		}
+	}
 }
 

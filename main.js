@@ -6,6 +6,7 @@ const TAB_URL_PAT = /^https?:\/\/mail\.google\.com\/mail\/u\/(\d+)\/.+$/;
 
 // this url contains a hard-coded token that we need.
 const theIframe = document.body.getElementsByTagName("iframe")[0];
+if (SENSITIVE_DEBUG) console.log(`src=${theIframe.src}`);
 const dataUrl = new URL(theIframe.src);
 const dataUrlToken = JSON.parse(dataUrl.searchParams.get("token"));
 if (SENSITIVE_DEBUG) console.debug(`dataUrlToken=${dataUrlToken}`);
@@ -54,12 +55,30 @@ async function fullRefresh() {
 		console.error(`Failed to refresh external POP3 account: Status ${resp.status}`);
 		if (SENSITIVE_DEBUG) console.error(resp);
 	} else {
+		console.debug("Triggered refresh of POP3 accounts");
 		if (SENSITIVE_DEBUG) console.debug(resp);
 	}
 }
 
-// refresh on page load
-fullRefresh();
+const PREFS = {
+	refresh_interval: 15
+}
+
+// refresh periodically
+async function periodicRefresh() {
+	Object.assign(PREFS, await getPrefs(PREFS));
+	fullRefresh();
+	if (PREFS.refresh_interval === 0) return;
+	setTimeout(periodicRefresh, PREFS.refresh_interval * 60 * 1000);
+	console.debug(`Scheduled next refresh in ${PREFS.refresh_interval} minutes.`);
+}
+periodicRefresh();
+
+onPrefsChanged((changes) => {
+	getPrefs(PREFS).then((prefs) => {
+		Object.assign(PREFS, prefs);
+	});
+});
 
 // modify the refresh button to also do a full refresh
 
