@@ -3,7 +3,7 @@
   "name": "Gmail++",
   "version": "1.0.1",
 
-  "description": "Improves gmail, currently by modifying the refresh button to also check external POP3 accounts.",
+  "description": "Improves the user experience of Gmail",
 
   "icons": {
     "48": "icons/icon-48.png",
